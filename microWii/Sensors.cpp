@@ -225,8 +225,8 @@ void ACC_Common() {
 // I2C adress: 0x3B (8bit)
 // ************************************************************************************************************
 #if defined(LSM9DS0_ACC)
-//#define LSM9DS0_ACC_ADR  (0x3B >> 1) // I2C accelerometer address -- this is for the Adafruit LSM9DS0 breakout board
-#define LSM9DS0_ACC_ADR  (0x3D >> 1) // I2C accelerometer address  -- this is if you're using the same layout as master_taylor2.brd
+#define LSM9DS0_ACC_ADR  (0x3B >> 1) // I2C accelerometer address -- this is if you connected SA0_XM and SA0_G pins to vdd (Adafruit LSM9DS0)
+//#define LSM9DS0_ACC_ADR  (0x3D >> 1) // I2C accelerometer address  -- this is if you connected SA0_XM and SA0_G pins to ground
 void ACC_init () {
   i2c_writeReg(LSM9DS0_ACC_ADR,0x20,0x57);   // 50Hz data rate, XYZ enable
   i2c_writeReg(LSM9DS0_ACC_ADR,0x21,0x00);   // Set scale to 2g
@@ -249,8 +249,8 @@ void ACC_getADC () {
 // I2C Gyroscope LSM9DS0
 // ************************************************************************************************************
 #if defined(LSM9DS0_GYRO)
-#define LSM9DS0_GYRO_ADR (0xD5 >> 1)  //I2C address, minus the last bit (write/read) -- This is for the master_taylor2.brd layout
-//#define LSM9DS0_GYRO_ADR (0xD6 >> 1)  //I2C address, minus the last bit (write/read) -- This is for Adafruit's LSM9DS0 breakout board
+#define LSM9DS0_GYRO_ADR (0xD6 >> 1) // I2C gyro address -- this is if you connected SA0_XM and SA0_G pins to vdd (Adafruit LSM9DS0)
+//#define LSM9DS0_GYRO_ADR (0xD5 >> 1) // I2C gyro address  -- this is if you connected SA0_XM and SA0_G pins to ground
 void Gyro_init(){
   i2c_writeReg(LSM9DS0_GYRO_ADR, 0x20, 0x0F);   //Ctrl reg 1: 100Hz, normal power, XYZ enable
   i2c_writeReg(LSM9DS0_GYRO_ADR, 0x23, 0x30);   //2000 dps scale
@@ -323,7 +323,8 @@ uint8_t Mag_getADC() { // return 1 when news values are available, 0 otherwise
 #endif
 
 #if defined(LSM9DS0_MAG)
-#define LSM9DS0_MAG_ADR (0x3D >> 1)
+#define LSM9DS0_MAG_ADR (0x3B >> 1) // I2C magnetometer address -- this is if you connected SA0_XM and SA0_G pins to vdd (Adafruit LSM9DS0)
+//#define LSM9DS0_MAG_ADR (0x3D >> 1)// I2C magnetometer address  -- this is if you connected SA0_XM and SA0_G pins to ground
   void Mag_init() {
 
     i2c_writeReg(LSM9DS0_MAG_ADR,0x24,0x08);  // [CTRL_REG5_XM] Mag data rate - 12.5 Hz
