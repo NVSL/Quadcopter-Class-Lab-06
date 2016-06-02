@@ -97,7 +97,7 @@
       //#define MS561101BA
 
       /* I2C magnetometer */
-	  #define LSM9DS0_MAG
+      //#define LSM9DS0_MAG
 
       /* Sonar */ // for visualization purpose currently - no control code behind
       //#define SRF02 // use the Devantech SRF i2c sensors
