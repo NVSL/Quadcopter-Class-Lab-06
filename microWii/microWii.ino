@@ -1,4 +1,4 @@
-
+  
 /*
  * Welcome to MultiWii.
  *
@@ -12,3 +12,17 @@
  *
  */
 
+/* Notes for refactoring microWii 
+ *  
+ *  Break down key pieces into clean libraries that can be used on both the controller and the quadcopter:
+ *  
+ *  1.  Radio communication.
+ *  2.  Serial communication
+ *  3.  IMU reading
+ *  4.  IMU processing: Smoothing + angle calculations.
+ *  5.  Motor control
+ *  6.  PID
+ *  7.  MSP processing. 
+ *  
+ *  Test as we go.  Make sure we don't break anything.  How to test???
+ */

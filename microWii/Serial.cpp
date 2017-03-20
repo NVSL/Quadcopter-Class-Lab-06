@@ -16,10 +16,8 @@ static uint8_t serialBufferTX[TX_BUFFER_SIZE][UART_NUMBER+1];
 // *******************************************************
 
 
-#if defined(PROMINI) || defined(MEGA)
-  #if defined(PROMINI)
+#if defined(PROMINI) 
   ISR(USART0_UDRE_vect) {  // Serial 0 on a PROMINI
-  #endif
     uint8_t t = serialTailTX[0];
     if (serialHeadTX[0] != t) {
       if (++t >= TX_BUFFER_SIZE) t = 0;
@@ -29,7 +27,7 @@ static uint8_t serialBufferTX[TX_BUFFER_SIZE][UART_NUMBER+1];
     if (t == serialHeadTX[0]) UCSR0B &= ~(1<<UDRIE0); // Check if all data is transmitted . if yes disable transmitter UDRE interrupt
   }
 #endif
-#if defined(PROMINI) || defined(PROMICRO)
+#if defined(PROMINI) 
   ISR(USART1_UDRE_vect) { // Serial 1 on a MEGA or on a PROMICRO
     uint8_t t = serialTailTX[1];
     if (serialHeadTX[1] != t) {
